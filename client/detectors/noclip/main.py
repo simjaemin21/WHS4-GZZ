@@ -408,8 +408,8 @@ def main():
             # 기존 로컬 JSONL 기록 유지
             write_common_event(event_file, common_event)
 
-            # shared 중앙 전송 추가. raw_score 0 이벤트도 그대로 전송한다.
-            if telemetry_enabled:
+            # 점수가 발생한 탐지 Event만 shared 중앙 전송한다.
+            if telemetry_enabled and common_event["raw_score"] > 0:
                 try:
                     receipt = send_detection(common_event)
                     print(

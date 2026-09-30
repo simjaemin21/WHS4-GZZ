@@ -203,7 +203,7 @@ def main():
                     result = to_launcher_ids(result, args.session_id, args.player_id)
                     print("-" * 60)
                     print(json.dumps(result, ensure_ascii=False, indent=2))
-                    if client_configured:
+                    if client_configured and result["raw_score"] > 0:
                         try:
                             receipt = send_detection(result)
                             # 'queued'는 로컬 outbox에 저장됐다는 뜻이며,
